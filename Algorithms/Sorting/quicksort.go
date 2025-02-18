@@ -42,6 +42,11 @@ func QuickSort(array []int, lowIndex int, highIndex int) {
 
 }
 
+// swap exchanges the elements at the specified indices in the given slice.
+// Parameters:
+// - arr: The slice of integers where the elements will be swapped.
+// - index1: The index of the first element to be swapped.
+// - index2: The index of the second element to be swapped.
 func swap(arr []int, index1 int, index2 int) {
 	arr[index1], arr[index2] = arr[index2], arr[index1]
 }
