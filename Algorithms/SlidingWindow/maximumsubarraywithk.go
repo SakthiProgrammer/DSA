@@ -3,15 +3,23 @@ package slidingwindow
 func MaximumSubarrayWithK(inputArray []int, k int) int {
 
 	maxSum := 0
-	currentSum := 0
-	for i := 0; i < len(inputArray); i++ {
-		currentSum += inputArray[i]
+	sum := 0
+	j := 0
+	i := 0
+	for j < len(inputArray) {
+		sum += inputArray[j]
 
-		if i >= k-1 {
-			if currentSum > maxSum {
-				maxSum = currentSum
+		if j-i+1 < k {
+			j++
+		}
+
+		if j-i+1 == k {
+			if sum > maxSum {
+				maxSum = sum
 			}
-			currentSum -= inputArray[i-(k-1)]
+			sum -= inputArray[i]
+			i++
+			j++
 		}
 	}
 

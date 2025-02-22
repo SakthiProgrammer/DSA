@@ -33,5 +33,5 @@ func main() {
 	sorting.BoubleSort(arr)
 	fmt.Println("BoubleSort: ", arr)
 
-	fmt.Println("Sliding Window:", slidingwindow.MaximumSubarrayWithK([]int{100, 200, 300, 400}, 2))
+	fmt.Println("Sliding Window:", slidingwindow.MaximumSubarrayWithK([]int{500, 100, 200, 300, 400}, 2))
 }
