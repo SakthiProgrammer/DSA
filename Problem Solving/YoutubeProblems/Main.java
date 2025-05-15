@@ -1,6 +1,6 @@
-import YoutubeProblems.Arrays.ArraysProblem;
+import ArraysPrblm.ArraysCall;
 
-class Main {
+public class Main {
     public static void main(String[] args) {
 
         /*
@@ -20,8 +20,10 @@ class Main {
          * =========================================================================
          */
 
-        boolean res = ArraysProblem.containsDuplicate(new int[] { 3, 4, 5 });
+        /* ============================================== */
+        // Arrays Problem
+        /* ============================================== */
 
-        System.out.println("Contains  Duplicate: " + res);
+        ArraysCall.Call();
     }
 }
