@@ -17,6 +17,7 @@ public class ArraysProblem {
      * Space Complexity: O(n)
      * Level: Easy
      * ==============================================
+     * Intuition: If we see a number again while scanning, it means there's a duplicate.
      * 
      * Given an integer array nums, return true if any value appears at least twice
      * in the array, and return false if every element is distinct.
@@ -54,6 +55,7 @@ public class ArraysProblem {
      * Space Complexity: O(1)
      * Level: Easy
      * ==============================================
+     * Intuition: The sum of numbers from 0 to n is always n * (n + 1) / 2. If we subtract the sum of the array from this, the missing number is revealed.
      * 
      * Given an array nums containing n distinct numbers in the range [0, n], return
      * the only number in the range that is missing from the array.
@@ -74,7 +76,7 @@ public class ArraysProblem {
         // Logic: Calculate expected sum of 0..n, subtract actual sum to find missing
         // number.
         int n = nums.length;
-        int expectedSum = n * (n + 1) / 2;
+        int expectedSum = n / 2 * (n + 1) + (n % 2) * (n + 1) / 2;// n * (n + 1) / 2; => To Prevent Overflow
         int actualSum = 0;
         for (int num : nums) {
             actualSum += num;
@@ -90,6 +92,7 @@ public class ArraysProblem {
      * Space Complexity: O(1) (ignoring output list)
      * Level: Easy
      * ==============================================
+     * Intuition: By marking indices as negative, we can track which numbers have appeared. The indices left positive are the missing numbers.
      * 
      * Given an array nums of n integers where nums[i] is in the range [1, n],
      * return an array of all the integers in the range [1, n] that do not appear in
@@ -129,6 +132,7 @@ public class ArraysProblem {
      * Space Complexity: O(n)
      * Level: Easy
      * ==============================================
+     * Intuition: If we know the target and the current number, we can check if the complement has already been seen using a map.
      * 
      * Given an array of integers nums and an integer target, return indices of the
      * two numbers such that they add up to target.
@@ -170,6 +174,7 @@ public class ArraysProblem {
      * Space Complexity: O(n)
      * Level: Easy
      * ==============================================
+     * Intuition: Sorting the array lets us count how many numbers are smaller than each value by their first index in the sorted array.
      * 
      * Given the array nums, for each nums[i] find out how many numbers in the array
      * are smaller than it. That is, for each nums[i] you have to count the number
@@ -198,6 +203,8 @@ public class ArraysProblem {
      * 
      */
     public int[] smallerNumbersThanCurrent(int[] nums) {
+        // Logic: Sort a copy, map each value to its first index (count of smaller
+        // numbers), then build result.
         int n = nums.length;
         int[] temp = Arrays.copyOf(nums, n);
 
@@ -228,6 +235,7 @@ public class ArraysProblem {
      * Space Complexity: O(1)
      * Level: Easy
      * ==============================================
+     * Intuition: The fastest way to move from one point to another is to move diagonally as much as possible, which is the max of the x or y distance.
      * 
      * On a 2D plane, there are n points with integer coordinates points[i] = [xi,
      * yi]. Return the minimum time in seconds to visit all the points in the order
@@ -250,8 +258,7 @@ public class ArraysProblem {
      * 
      * Input: points = [[1,1],[3,4],[-1,0]]
      * Output: 7
-     * Explanation: One optimal path is [1,1] -> [2,2] -> [3,3] -> [3,4] -> [2,3] ->
-     * [1,2] -> [0,1] -> [-1,0]
+     * Explanation: One optimal path is [1,1] -> [2,2] -> [3,3] -> [3,4] -> [2,3] -> [1,2] -> [0,1] -> [-1,0]
      * Time from [1,1] to [3,4] = 3 seconds
      * Time from [3,4] to [-1,0] = 4 seconds
      * Total time = 7 seconds
@@ -262,7 +269,8 @@ public class ArraysProblem {
      * Output: 5
      */
     public int minTimeToVisitAllPoints(int[][] points) {
-
+        // Logic: For each consecutive pair, add max of x or y distance (diagonal moves
+        // allowed).
         int totalTimeInSeconds = 0; // Total time taken to visit all points
 
         // Loop through each pair of consecutive points
@@ -274,16 +282,11 @@ public class ArraysProblem {
         return totalTimeInSeconds; // Return the total time
     }
 
-    // Helper method to calculate time taken to move between two points
+    // Logic: Calculate the maximum of horizontal and vertical distance between two
+    // points.
     static int calculateTimeBetweenTwoPoints(int[] startPoint, int[] endPoint) {
-        // Calculate horizontal distance (difference in x-coordinates)
         int horizontalDistance = Math.abs(startPoint[0] - endPoint[0]);
-
-        // Calculate vertical distance (difference in y-coordinates)
         int verticalDistance = Math.abs(startPoint[1] - endPoint[1]);
-
-        // Minimum time is the maximum of horizontal or vertical distance,
-        // because diagonal moves cover both axes in one step
         return Math.max(horizontalDistance, verticalDistance);
     }
 
@@ -295,6 +298,7 @@ public class ArraysProblem {
      * Space Complexity: O(1) (ignoring output list)
      * Level: Medium
      * ==============================================
+     * Intuition: By simulating the spiral movement and turning when hitting a boundary or visited cell, we can collect all elements in order.
      * 
      * Given an m x n matrix, return all elements of the matrix in spiral order.
      * 
@@ -308,6 +312,8 @@ public class ArraysProblem {
      * Output: [1,2,3,4,8,12,11,10,9,5,6,7]
      */
     public List<Integer> spiralOrder(int[][] matrix) {
+        // Logic: Simulate spiral traversal by changing direction when hitting
+        // boundaries or visited cells.
         int rows = matrix.length;
         int cols = matrix[0].length;
 
@@ -353,6 +359,7 @@ public class ArraysProblem {
      * Space Complexity: O(m * n) (due to recursion stack or visited array)
      * Level: Medium
      * ==============================================
+     * Intuition: Each time we find a '1', we can use DFS to mark all connected land as visited, counting one island.
      * 
      * Given an m x n 2D binary grid grid which represents a map of '1's (land) and
      * '0's (water),
@@ -385,6 +392,8 @@ public class ArraysProblem {
      * Output: 3
      */
     public int numIslands(char[][] grid) {
+        // Logic: For each cell, if it's land ('1'), do DFS to mark the whole island and
+        // increment count.
         int islands = 0;
 
         for (int i = 0; i < grid.length; i++) {
@@ -400,6 +409,8 @@ public class ArraysProblem {
     }
 
     static void dfs(char[][] grid, int i, int j) {
+        // Logic: Mark current cell as visited ('0'), then recursively visit all 4
+        // directions.
         if (i < 0 || i >= grid.length || j < 0 || j >= grid[i].length || grid[i][j] == '0')
             return;
 
