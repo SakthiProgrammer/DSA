@@ -70,6 +70,40 @@ public class ArraysCall {
         target = 6;
         resArr = arrays.twoSum(arr, target);
         System.out.println("Two Sum: " + Arrays.toString(resArr)); // [0, 1]
+
+        /* ============================================== */
+        // 5. SmallerNumbersThanCurrent
+        /* ============================================== */
+
+        arr = new int[] { 8, 1, 2, 2, 3 };
+        resArr = arrays.smallerNumbersThanCurrent(arr);
+        System.out.println("SmallerNumbersThanCurrent: " + Arrays.toString(resArr)); // [4, 0, 1, 1, 3]
+
+        arr = new int[] { 6, 5, 4, 8 };
+        resArr = arrays.smallerNumbersThanCurrent(arr);
+        System.out.println("SmallerNumbersThanCurrent: " + Arrays.toString(resArr)); // [2, 1, 0, 3]
+
+        arr = new int[] { 7, 7, 7, 7 };
+        resArr = arrays.smallerNumbersThanCurrent(arr);
+        System.out.println("SmallerNumbersThanCurrent: " + Arrays.toString(resArr)); // [0, 0, 0, 0]
+
+        /* ============================================== */
+        // 6. MinTimeToVisitAllPoints
+        /* ============================================== */
+
+        int[][] arr2D = { { 1, 1 }, { 3, 4 }, { -1, 0 } };
+        resInt = arrays.minTimeToVisitAllPoints(arr2D);
+        System.out.println("MinTimeToVisitAllPoints: " + resInt); // 7
+
+        arr2D = new int[][] { { 3, 2 }, { -2, 2 } };
+        resInt = arrays.minTimeToVisitAllPoints(arr2D);
+        System.out.println("MinTimeToVisitAllPoints: " + resInt); // 5
+
+        arr2D = new int[][] { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
+        resList = arrays.spiralOrder(arr2D);
+        System.out.println("Spiral Matrix: "); // 5
+        print(resList);
+
     }
 
     // Utility method to print a list in [a, b, c] format
