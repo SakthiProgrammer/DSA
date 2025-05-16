@@ -99,10 +99,36 @@ public class ArraysCall {
         resInt = arrays.minTimeToVisitAllPoints(arr2D);
         System.out.println("MinTimeToVisitAllPoints: " + resInt); // 5
 
+        /* ============================================== */
+        // 7. Spiral Matrix
+        /* ============================================== */
+
         arr2D = new int[][] { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
         resList = arrays.spiralOrder(arr2D);
-        System.out.println("Spiral Matrix: "); // 5
+        System.out.println("Spiral Matrix: "); // [1, 2, 3, 6, 9, 8, 7, 4, 5]
         print(resList);
+
+        /* ============================================== */
+        // 8. Number Of Islands
+        /* ============================================== */
+
+        char[][] charArr2D = new char[][] {
+                { '1', '1', '1', '1', '0' },
+                { '1', '1', '0', '1', '0' },
+                { '1', '1', '0', '0', '0' },
+                { '0', '0', '0', '0', '0' } };
+
+        resInt = arrays.numIslands(charArr2D);
+        System.out.println("Number Of IsLands: " + resInt); // 1
+
+        charArr2D = new char[][] {
+                { '1', '1', '0', '0', '0' },
+                { '1', '1', '0', '0', '0' },
+                { '0', '0', '1', '0', '0' },
+                { '0', '0', '0', '1', '1' }
+        };
+        resInt = arrays.numIslands(charArr2D);
+        System.out.println("Number Of IsLands: " + resInt); // 3
 
     }
 
