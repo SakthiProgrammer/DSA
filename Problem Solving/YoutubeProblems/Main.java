@@ -1,4 +1,6 @@
 import ArraysPrblm.ArraysCall;
+import TwoPointer.TwoPointerCall;
+import Utility.MethodCall;
 
 public class Main {
     public static void main(String[] args) {
@@ -20,10 +22,24 @@ public class Main {
          * =========================================================================
          */
 
-        /* ============================================== */
-        // Arrays Problem
-        /* ============================================== */
+        MethodCall method = null;
 
-        ArraysCall.Call();
+        /*
+         * ==============================================
+         * 1. Arrays Problems (P): (1 - 8)
+         * ==============================================
+         */
+
+        method = new ArraysCall();
+        method.call();
+
+        /*
+         * ==============================================
+         * 2. Two Pointer Problems (P): (9 - )
+         * ==============================================
+         */
+        method = new TwoPointerCall();
+        method.call();
+
     }
 }
