@@ -2,9 +2,7 @@ package ArraysPrblm;
 
 import java.util.Arrays;
 import java.util.List;
-
 import Utility.MethodCall;
-import Utility.Utility;
 
 public class ArraysCall implements MethodCall {
 
@@ -47,13 +45,11 @@ public class ArraysCall implements MethodCall {
         /* ============================================== */
         arr = new int[] { 4, 3, 2, 7, 8, 2, 3, 1 };
         List<Integer> resList = arrays.findDisappearedNumbers(arr);
-        System.out.print("Disappeared Numbers: ");
-        Utility.print(resList); // [5, 6]
+        System.out.println("Disappeared Numbers: " + resList); // [5, 6]
 
         arr = new int[] { 1, 1 };
         resList = arrays.findDisappearedNumbers(arr);
-        System.out.print("Disappeared Numbers: ");
-        Utility.print(resList); // [2]
+        System.out.println("Disappeared Numbers: " + resList);// [2]
 
         /* ============================================== P: 4 */
         // 4. Two Sum
@@ -110,8 +106,7 @@ public class ArraysCall implements MethodCall {
 
         arr2D = new int[][] { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
         resList = arrays.spiralOrder(arr2D);
-        System.out.println("Spiral Matrix: "); // [1, 2, 3, 6, 9, 8, 7, 4, 5]
-        Utility.print(resList);
+        System.out.println("Spiral Matrix: " + resList); // [1, 2, 3, 6, 9, 8, 7, 4, 5]
 
         /* ============================================== P: 8 */
         // 8. Number Of Islands

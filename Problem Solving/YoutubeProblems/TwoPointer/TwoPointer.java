@@ -1,5 +1,9 @@
 package TwoPointer;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class TwoPointer {
 
     /*
@@ -108,6 +112,134 @@ public class TwoPointer {
         }
 
         return res;
+    }
+
+    /*
+     * 15. 3Sum
+     * ==============================================
+     * DSA: Two Pointer, Sorting
+     * Time Complexity: O(n^2)
+     * Space Complexity: O(1) (excluding the output list)
+     * Level: Medium
+     * ==============================================
+     * Intuition: Sort the array and use a fixed pointer for the first element.
+     * Then use two pointers (left and right) to find pairs that sum with the fixed
+     * element to zero.
+     * Skip duplicates to avoid repeated triplets.
+     *
+     * Given an integer array nums, return all the triplets [nums[i], nums[j],
+     * nums[k]]
+     * such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
+     * Notice that the solution set must not contain duplicate triplets.
+     *
+     * Example 1:
+     * Input: nums = [-1,0,1,2,-1,-4]
+     * Output: [[-1,-1,2],[-1,0,1]]
+     *
+     * Example 2:
+     * Input: nums = [0,1,1]
+     * Output: []
+     *
+     * Example 3:
+     * Input: nums = [0,0,0]
+     * Output: [[0,0,0]]
+     */
+    public List<List<Integer>> threeSum(int[] nums) {
+
+        Arrays.sort(nums);
+
+        List<List<Integer>> res = new ArrayList<>();
+        int n = nums.length;
+
+        for (int i = 0; i < n; i++) {
+
+            int val = nums[i];
+
+            if (i > 0 && val == nums[i - 1])
+                continue;
+
+            int left = i + 1;
+            int right = n - 1;
+
+            while (left < right) {
+                int accSum = val + nums[left] + nums[right];
+
+                if (accSum > 0) {
+                    right--;
+                } else if (accSum < 0) {
+                    left++;
+                } else {
+
+                    res.add(Arrays.asList(val, nums[left], nums[right]));
+                    left++;
+
+                    while (left < right && nums[left] == nums[left - 1]) {
+                        left++;
+                    }
+                }
+            }
+
+        }
+
+        return res;
+
+    }
+
+    /*
+     * 845. Longest Mountain in Array
+     * ==============================================
+     * DSA: Two Pointer, Array
+     * Time Complexity: O(n)
+     * Space Complexity: O(1)
+     * Level: Medium
+     * ==============================================
+     * Intuition: A mountain must strictly increase and then strictly decrease.
+     * Iterate through the array and for each peak (arr[i-1] < arr[i] > arr[i+1]),
+     * expand left and right to find the full mountain.
+     * Track the maximum length found.
+     *
+     * Given an integer array arr, return the length of the longest subarray which
+     * is a mountain.
+     * Return 0 if there is no mountain subarray.
+     *
+     * A mountain is defined as:
+     * - arr.length >= 3
+     * - There exists some index i (0 < i < arr.length - 1) such that:
+     * arr[0] < arr[1] < ... < arr[i - 1] < arr[i]
+     * arr[i] > arr[i + 1] > ... > arr[arr.length - 1]
+     *
+     * Example 1:
+     * Input: arr = [2,1,4,7,3,2,5]
+     * Output: 5
+     * Explanation: The largest mountain is [1,4,7,3,2] which has length 5.
+     *
+     * Example 2:
+     * Input: arr = [2,2,2]
+     * Output: 0
+     * Explanation: There is no mountain.
+     */
+    public int longestMountain(int[] arr) {
+
+        int longestMoutain = 0;
+        int n = arr.length;
+
+        for (int i = 1; i < n - 1; i++) {
+            if (arr[i - 1] < arr[i] && arr[i] > arr[i + 1]) {
+                int left = i, right = i;
+
+                while (left >= 0 && arr[left] > arr[left - 1]) {
+                    left--;
+                }
+
+                while (right < n - 1 && arr[right] > arr[right + 1]) {
+                    right++;
+                }
+
+                longestMoutain = Math.max(longestMoutain, right - left + 1);
+            }
+        }
+
+        return longestMoutain;
     }
 
 }
