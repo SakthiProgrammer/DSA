@@ -3,11 +3,16 @@ package ArraysPrblm;
 import java.util.Arrays;
 import java.util.List;
 
-public class ArraysCall {
-    public static void Call() {
+import Utility.MethodCall;
+import Utility.Utility;
+
+public class ArraysCall implements MethodCall {
+
+    @Override
+    public void call() {
         ArraysProblem arrays = new ArraysProblem();
 
-        /* ============================================== */
+        /* ============================================== P: 1 */
         // 1. Contains Duplicate
         /* ============================================== */
         int[] arr = { 1, 2, 3, 1 };
@@ -22,7 +27,7 @@ public class ArraysCall {
         resBool = arrays.containsDuplicate(arr);
         System.out.println("Contains Duplicate: " + resBool); // true
 
-        /* ============================================== */
+        /* ============================================== P: 2 */
         // 2. Missing Number
         /* ============================================== */
         arr = new int[] { 3, 0, 1 };
@@ -37,20 +42,20 @@ public class ArraysCall {
         resInt = arrays.missingNumber(arr);
         System.out.println("Missing Number: " + resInt); // 8
 
-        /* ============================================== */
+        /* ============================================== P: 3 */
         // 3. Find Disappeared Numbers
         /* ============================================== */
         arr = new int[] { 4, 3, 2, 7, 8, 2, 3, 1 };
         List<Integer> resList = arrays.findDisappearedNumbers(arr);
         System.out.print("Disappeared Numbers: ");
-        print(resList); // [5, 6]
+        Utility.print(resList); // [5, 6]
 
         arr = new int[] { 1, 1 };
         resList = arrays.findDisappearedNumbers(arr);
         System.out.print("Disappeared Numbers: ");
-        print(resList); // [2]
+        Utility.print(resList); // [2]
 
-        /* ============================================== */
+        /* ============================================== P: 4 */
         // 4. Two Sum
         /* ============================================== */
         int target;
@@ -71,7 +76,7 @@ public class ArraysCall {
         resArr = arrays.twoSum(arr, target);
         System.out.println("Two Sum: " + Arrays.toString(resArr)); // [0, 1]
 
-        /* ============================================== */
+        /* ============================================== P: 5 */
         // 5. SmallerNumbersThanCurrent
         /* ============================================== */
 
@@ -87,7 +92,7 @@ public class ArraysCall {
         resArr = arrays.smallerNumbersThanCurrent(arr);
         System.out.println("SmallerNumbersThanCurrent: " + Arrays.toString(resArr)); // [0, 0, 0, 0]
 
-        /* ============================================== */
+        /* ============================================== P: 6 */
         // 6. MinTimeToVisitAllPoints
         /* ============================================== */
 
@@ -99,16 +104,16 @@ public class ArraysCall {
         resInt = arrays.minTimeToVisitAllPoints(arr2D);
         System.out.println("MinTimeToVisitAllPoints: " + resInt); // 5
 
-        /* ============================================== */
+        /* ============================================== P: 7 */
         // 7. Spiral Matrix
         /* ============================================== */
 
         arr2D = new int[][] { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
         resList = arrays.spiralOrder(arr2D);
         System.out.println("Spiral Matrix: "); // [1, 2, 3, 6, 9, 8, 7, 4, 5]
-        print(resList);
+        Utility.print(resList);
 
-        /* ============================================== */
+        /* ============================================== P: 8 */
         // 8. Number Of Islands
         /* ============================================== */
 
@@ -132,16 +137,4 @@ public class ArraysCall {
 
     }
 
-    // Utility method to print a list in [a, b, c] format
-    public static void print(List<Integer> list) {
-        System.out.print("[");
-        for (int i = 0; i < list.size(); i++) {
-            if (i == list.size() - 1) {
-                System.out.print(list.get(i));
-            } else {
-                System.out.print(list.get(i) + ", ");
-            }
-        }
-        System.out.println("]");
-    }
 }
