@@ -1,4 +1,9 @@
 import ArraysPrblm.ArraysCall;
+import BackTracking.BackTracking;
+import BackTracking.BackTrackingCall;
+import BitManipulation.BitManipulationCall;
+import DynamicProgramming.DynamicProgrammingCall;
+import SlidingWindow.SlidingWindowCall;
 import TwoPointer.TwoPointerCall;
 import Utility.MethodCall;
 
@@ -26,19 +31,50 @@ public class Main {
 
         /*
          * ==============================================
-         * 1. Arrays Problems (P): (1 - 8)
+         * 1. Arrays Problems (P): (1 - 8) = 8
          * ==============================================
          */
-
         method = new ArraysCall();
         method.call();
 
         /*
          * ==============================================
-         * 2. Two Pointer Problems (P): (9 - )
+         * 2. Two Pointer Problems (P): (9 - 12) = 4
          * ==============================================
          */
         method = new TwoPointerCall();
+        method.call();
+
+        /*
+         * ==============================================
+         * 3. Sliding Window Problems (P): (13 - 15) = 3
+         * ==============================================
+         */
+        method = new SlidingWindowCall();
+        method.call();
+
+        /*
+         * ==============================================
+         * 4. Bit Manipulation Problems (P): (13 - 15) = 3
+         * ==============================================
+         */
+        method = new BitManipulationCall();
+        method.call();
+
+        /*
+         * ==============================================
+         * 5. Dynamic Programming Problems (P): (16 - 19) = 4
+         * ==============================================
+         */
+        method = new DynamicProgrammingCall();
+        method.call();
+
+        /*
+         * ==============================================
+         * 6. Backtracking Problems (P): (16 - 19) = 4
+         * ==============================================
+         */
+        method = new BackTrackingCall();
         method.call();
 
     }
