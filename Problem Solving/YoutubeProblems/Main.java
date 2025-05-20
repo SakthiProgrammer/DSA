@@ -1,5 +1,4 @@
 import ArraysPrblm.ArraysCall;
-import BackTracking.BackTracking;
 import BackTracking.BackTrackingCall;
 import BitManipulation.BitManipulationCall;
 import DynamicProgramming.DynamicProgrammingCall;
@@ -71,7 +70,7 @@ public class Main {
 
         /*
          * ==============================================
-         * 6. Backtracking Problems (P): (16 - 19) = 4
+         * 6. Backtracking Problems (P): (20 - ) = 4
          * ==============================================
          */
         method = new BackTrackingCall();
