@@ -86,7 +86,7 @@ public class BackTracking {
      * @param s input string
      * @return list of all possible letter case permutations
      */
-    public List<String> letterCasePermutationQueue(String s) {
+    public List<String> letterCasePermutationBFS(String s) {
         LinkedList<String> result = new LinkedList<>();
         result.add(s);
 
@@ -165,6 +165,78 @@ public class BackTracking {
             curr.add(nums[i]);
             backtrack(nums, output, i + 1, curr);
             curr.remove(curr.size() - 1);
+        }
+    }
+
+    /*
+     * 77. Combinations
+     * ==============================================
+     * DSA: Backtracking, Combinatorics
+     * Time Complexity: O(C(n, k) * k)
+     * Space Complexity: O(C(n, k) * k)
+     * Level: Medium
+     * ==============================================
+     * Intuition: Use backtracking to generate all possible combinations of k
+     * numbers from 1 to n.
+     * At each step, choose the next number and recursively build the combination
+     * until k numbers are chosen.
+     *
+     * Given two integers n and k, return all possible combinations of k numbers
+     * chosen from the range [1, n].
+     * You may return the answer in any order.
+     *
+     * Example 1:
+     * Input: n = 4, k = 2
+     * Output: [[1,2],[1,3],[1,4],[2,3],[2,4],[3,4]]
+     * Explanation: There are 4 choose 2 = 6 total combinations.
+     * Note that combinations are unordered, i.e., [1,2] and [2,1] are considered to
+     * be the same combination.
+     *
+     * Example 2:
+     * Input: n = 1, k = 1
+     * Output: [[1]]
+     * Explanation: There is 1 choose 1 = 1 total combination.
+     */
+
+    /**
+     * Generates all possible combinations of k numbers from 1 to n.
+     * ----------------------------------------------
+     * Logic: Backtracking to build combinations by choosing the next number and
+     * recursively filling the combination.
+     * Topic: Backtracking, Combinatorics
+     *
+     * @param n upper bound of the range (inclusive)
+     * @param k number of elements in each combination
+     * @return list of all possible combinations
+     */
+    public List<List<Integer>> combine(int n, int k) {
+        List<List<Integer>> result = new ArrayList<>();
+        backtrack(1, n, k, result, new ArrayList<>());
+        return result;
+    }
+
+    /**
+     * Helper method for generating combinations using backtracking.
+     * ----------------------------------------------
+     * Logic: Recursively build combinations by adding the next number and reducing
+     * k.
+     *
+     * @param i      current starting number
+     * @param n      upper bound of the range
+     * @param k      numbers left to pick
+     * @param result list to collect combinations
+     * @param path   current combination being built
+     */
+    static void backtrack(int i, int n, int k, List<List<Integer>> result, List<Integer> path) {
+        if (k == 0) {
+            result.add(new ArrayList<>(path));
+            return;
+        }
+
+        for (int x = i; x <= n; x++) {
+            path.add(x);
+            backtrack(x + 1, n, k - 1, result, path);
+            path.remove(path.size() - 1);
         }
     }
 }
