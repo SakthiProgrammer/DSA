@@ -2,6 +2,7 @@ import ArraysPrblm.ArraysCall;
 import BackTracking.BackTrackingCall;
 import BitManipulation.BitManipulationCall;
 import DynamicProgramming.DynamicProgrammingCall;
+import LinkedList.LinkedListCall;
 import SlidingWindow.SlidingWindowCall;
 import TwoPointer.TwoPointerCall;
 import Utility.MethodCall;
@@ -70,10 +71,18 @@ public class Main {
 
         /*
          * ==============================================
-         * 6. Backtracking Problems (P): (20 - ) = 4
+         * 6. Backtracking Problems (P): (20 - 25) = 5
          * ==============================================
          */
         method = new BackTrackingCall();
+        method.call();
+
+        /*
+         * ==============================================
+         * 6. Linked List Problems (P): (26 - ) = 5
+         * ==============================================
+         */
+        method = new LinkedListCall();
         method.call();
 
     }
