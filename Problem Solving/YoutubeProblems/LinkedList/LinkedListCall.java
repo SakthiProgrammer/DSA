@@ -48,6 +48,29 @@ public class LinkedListCall implements MethodCall {
         node1 = new ListNode(1);
         hasCycle = linkedLists.hasCycle(node1);
         System.out.println("Has Cycle: " + hasCycle); // false
+
+        /* ============================================== P: 3 */
+        // 3. Merge Two Sorted Lists
+        /* ============================================== */
+        // Example: l1 = [1,2,4], l2 = [1,3,4]
+        ListNode l1 = createList(1, 2, 4);
+        ListNode l2 = createList(1, 3, 4);
+        ListNode merged = linkedLists.mergeTwoLists(l1, l2);
+        System.out.print("Merged List: ");
+        printList(merged); // Output: 1->1->2->3->4->4
+
+        /* ============================================== P: 4 */
+        // 4. Palindrome Linked List
+        /* ============================================== */
+        // Example 1: head = [1,2,2,1]
+        head = createList(1, 2, 2, 1);
+        boolean isPalin = linkedLists.isPalindrome(head);
+        System.out.println("Is Palindrome: " + isPalin); // true
+
+        // Example 2: head = [1,2]
+        head = createList(1, 2);
+        isPalin = linkedLists.isPalindrome(head);
+        System.out.println("Is Palindrome: " + isPalin); // false
     }
 
     /**

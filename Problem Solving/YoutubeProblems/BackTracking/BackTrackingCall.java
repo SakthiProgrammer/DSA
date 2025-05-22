@@ -2,7 +2,6 @@ package BackTracking;
 
 import Utility.MethodCall;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BackTrackingCall implements MethodCall {
