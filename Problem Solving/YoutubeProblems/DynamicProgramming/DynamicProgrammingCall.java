@@ -9,7 +9,7 @@ public class DynamicProgrammingCall implements MethodCall {
     public void call() {
         DynamincProgramming dp = new DynamincProgramming();
 
-        /* ============================================== P: 16 */
+        /* ============================================== P: 17 */
         // 1. Coin Change
         /* ============================================== */
         int[] coins = { 1, 2, 5 };
@@ -27,7 +27,7 @@ public class DynamicProgrammingCall implements MethodCall {
         resInt = dp.coinChange(coins, amount);
         System.out.println("Coin Change: " + resInt); // 0
 
-        /* ============================================== P: 17 */
+        /* ============================================== P: 18 */
         // 2. Maximum Subarray
         /* ============================================== */
         int[] arr = { -2, 1, -3, 4, -1, 2, 1, -5, 4 };
@@ -42,7 +42,7 @@ public class DynamicProgrammingCall implements MethodCall {
         resInt = dp.maxSubArray(arr);
         System.out.println("Maximum Subarray Sum: " + resInt); // 23
 
-        /* ============================================== P: 18 */
+        /* ============================================== P: 19 */
         // 3. Counting Bits
         /* ============================================== */
         int n = 2;
@@ -53,7 +53,7 @@ public class DynamicProgrammingCall implements MethodCall {
         resArr = dp.countBits(n);
         System.out.println("Counting Bits: " + java.util.Arrays.toString(resArr)); // [0, 1, 1, 2, 1, 2]
 
-        /* ============================================== P: 19 */
+        /* ============================================== P: 20 */
         // 4. Range Sum Query - Immutable (NumArray)
         /* ============================================== */
         int[] nums = { -2, 0, 3, -5, 2, -1 };

@@ -8,7 +8,7 @@ public class LinkedListCall implements MethodCall {
     public void call() {
         LinkedLists linkedLists = new LinkedLists();
 
-        /* ============================================== P: 1 */
+        /* ============================================== P: 26 */
         // 1. Middle of the Linked List
         /* ============================================== */
         ListNode head = createList(1, 2, 3, 4, 5);
@@ -21,7 +21,7 @@ public class LinkedListCall implements MethodCall {
         System.out.print("Middle of Linked List: ");
         printList(middle); // Output: 4->5->6
 
-        /* ============================================== P: 2 */
+        /* ============================================== P: 27 */
         // 2. Linked List Cycle
         /* ============================================== */
         // Example 1: head = [3,2,0,-4], pos = 1 (cycle at node with value 2)
@@ -49,7 +49,7 @@ public class LinkedListCall implements MethodCall {
         hasCycle = linkedLists.hasCycle(node1);
         System.out.println("Has Cycle: " + hasCycle); // false
 
-        /* ============================================== P: 3 */
+        /* ============================================== P: 28 */
         // 3. Merge Two Sorted Lists
         /* ============================================== */
         // Example: l1 = [1,2,4], l2 = [1,3,4]
@@ -59,7 +59,7 @@ public class LinkedListCall implements MethodCall {
         System.out.print("Merged List: ");
         printList(merged); // Output: 1->1->2->3->4->4
 
-        /* ============================================== P: 4 */
+        /* ============================================== P: 29 */
         // 4. Palindrome Linked List
         /* ============================================== */
         // Example 1: head = [1,2,2,1]

@@ -4,6 +4,7 @@ import BitManipulation.BitManipulationCall;
 import DynamicProgramming.DynamicProgrammingCall;
 import LinkedList.LinkedListCall;
 import SlidingWindow.SlidingWindowCall;
+import Stack.StackCall;
 import TwoPointer.TwoPointerCall;
 import Utility.MethodCall;
 
@@ -55,7 +56,7 @@ public class Main {
 
         /*
          * ==============================================
-         * 4. Bit Manipulation Problems (P): (13 - 15) = 3
+         * 4. Bit Manipulation Problems (P): (16 - 16) = 1
          * ==============================================
          */
         method = new BitManipulationCall();
@@ -63,7 +64,7 @@ public class Main {
 
         /*
          * ==============================================
-         * 5. Dynamic Programming Problems (P): (16 - 19) = 4
+         * 5. Dynamic Programming Problems (P): (17 - 20) = 4
          * ==============================================
          */
         method = new DynamicProgrammingCall();
@@ -71,7 +72,7 @@ public class Main {
 
         /*
          * ==============================================
-         * 6. Backtracking Problems (P): (20 - 25) = 5
+         * 6. Backtracking Problems (P): (21 - 25) = 5
          * ==============================================
          */
         method = new BackTrackingCall();
@@ -79,10 +80,18 @@ public class Main {
 
         /*
          * ==============================================
-         * 6. Linked List Problems (P): (26 - ) = 5
+         * 6. Linked List Problems (P): (26 - 29) = 4
          * ==============================================
          */
         method = new LinkedListCall();
+        method.call();
+
+        /*
+         * ==============================================
+         * 7. Stack Problems (P): (30 - ) = 5
+         * ==============================================
+         */
+        method = new StackCall();
         method.call();
 
     }
