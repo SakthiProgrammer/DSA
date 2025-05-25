@@ -3,6 +3,7 @@ import BackTracking.BackTrackingCall;
 import BitManipulation.BitManipulationCall;
 import DynamicProgramming.DynamicProgrammingCall;
 import LinkedList.LinkedListCall;
+import Queue.QueueCall;
 import SlidingWindow.SlidingWindowCall;
 import Stack.StackCall;
 import TwoPointer.TwoPointerCall;
@@ -88,10 +89,18 @@ public class Main {
 
         /*
          * ==============================================
-         * 7. Stack Problems (P): (30 - ) = 5
+         * 7. Stack Problems (P): (30 - 33 ) = 3
          * ==============================================
          */
         method = new StackCall();
+        method.call();
+
+        /*
+         * ==============================================
+         * 8. Queue Problems (P): (33 - ) = 5
+         * ==============================================
+         */
+        method = new QueueCall();
         method.call();
 
     }
