@@ -1,5 +1,6 @@
 import ArraysPrblm.ArraysCall;
 import BackTracking.BackTrackingCall;
+import BinaryTree.BinaryTreeCall;
 import BitManipulation.BitManipulationCall;
 import DynamicProgramming.DynamicProgrammingCall;
 import LinkedList.LinkedListCall;
@@ -89,7 +90,7 @@ public class Main {
 
         /*
          * ==============================================
-         * 7. Stack Problems (P): (30 - 33 ) = 3
+         * 7. Stack Problems (P): (30 - 32 ) = 3
          * ==============================================
          */
         method = new StackCall();
@@ -97,10 +98,18 @@ public class Main {
 
         /*
          * ==============================================
-         * 8. Queue Problems (P): (33 - ) = 5
+         * 8. Queue Problems (P): (33 - 35) = 3
          * ==============================================
          */
         method = new QueueCall();
+        method.call();
+
+        /*
+         * ==============================================
+         * 9. Binary Tree Problems (P): (36 - ) = 3
+         * ==============================================
+         */
+        method = new BinaryTreeCall();
         method.call();
 
     }

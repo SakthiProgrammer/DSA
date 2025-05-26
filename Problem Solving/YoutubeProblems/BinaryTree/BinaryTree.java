@@ -1,5 +1,207 @@
 package BinaryTree;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 public class BinaryTree {
+
+    /*
+     * 637. Average of Levels in Binary Tree
+     * ==============================================
+     * DSA: Tree, BFS (Level Order Traversal), Queue
+     * Time Complexity: O(n) – Each node is visited once.
+     * Space Complexity: O(n) – For the queue storing nodes at each level.
+     * Level: Easy
+     * ==============================================
+     * Intuition:
+     * Perform level-order traversal using a queue.
+     * For each level, calculate the sum of node values and then take the average.
+     * Append the average to the result list.
+     *
+     * You are given the root of a binary tree.
+     * Return the average value of the nodes on each level in the form of a list.
+     * Answers within 10^-5 of the actual answer will be accepted.
+     *
+     * Example 1:
+     * Input: root = [3,9,20,null,null,15,7]
+     * Output: [3.00000, 14.50000, 11.00000]
+     * Explanation:
+     * - Level 0: [3] => Average = 3
+     * - Level 1: [9, 20] => Average = (9 + 20) / 2 = 14.5
+     * - Level 2: [15, 7] => Average = (15 + 7) / 2 = 11
+     *
+     * Example 2:
+     * Input: root = [3,9,20,15,7]
+     * Output: [3.00000, 14.50000, 11.00000]
+     */
+
+    public List<Double> averageOfLevels(TreeNode root) {
+        // Initialize a queue for level-order traversal (BFS)
+        Queue<TreeNode> q = new LinkedList<>(List.of(root));
+
+        // List to store the average of each level
+        List<Double> ans = new ArrayList<>();
+
+        // Continue level-order traversal until the queue is empty
+        while (!q.isEmpty()) {
+            // Get the number of nodes at the current level
+            int qlen = q.size();
+
+            // Variable to store the sum of node values at this level
+            double row = 0;
+
+            // Process each node in the current level
+            for (int i = 0; i < qlen; i++) {
+                TreeNode curr = q.poll(); // Remove the node from the queue
+                row += curr.val; // Add its value to the sum
+
+                // Add left and right children (if present) to the queue for the next level
+                if (curr.left != null)
+                    q.offer(curr.left);
+                if (curr.right != null)
+                    q.offer(curr.right);
+            }
+
+            // Compute the average for this level and add to the result list
+            ans.add(row / qlen);
+        }
+
+        // Return the list of averages for each level
+        return ans;
+    }
+
+    /*
+     * 111. Minimum Depth of Binary Tree
+     * ==============================================
+     * DSA: Tree, BFS (Level Order Traversal), Queue
+     * Time Complexity: O(n) – Each node is visited at most once.
+     * Space Complexity: O(n) – For the queue used in level-order traversal.
+     * Level: Easy
+     * ==============================================
+     * Intuition:
+     * Perform a level-order (BFS) traversal.
+     * The first time we encounter a leaf node (no left or right child),
+     * we return the current level as it represents the minimum depth.
+     *
+     * You are given the root of a binary tree.
+     * Return its minimum depth – the number of nodes along the shortest path
+     * from the root node down to the nearest leaf node.
+     *
+     * A leaf is a node with no children.
+     *
+     * Example 1:
+     * Input: root = [3,9,20,null,null,15,7]
+     * Output: 2
+     * Explanation: The shortest path to a leaf is [3, 9], which has depth 2.
+     *
+     * Example 2:
+     * Input: root = [2,null,3,null,4,null,5,null,6]
+     * Output: 5
+     * Explanation: The shortest path to a leaf is [2,3,4,5,6], which has depth 5.
+     */
+    public int minDepth(TreeNode root) {
+        // If the tree is empty, return depth 0
+        if (root == null) {
+            return 0;
+        }
+
+        // Initialize queue for level-order traversal
+        Queue<TreeNode> queue = new LinkedList<>(List.of(root));
+        int level = 1; // Start from level 1 (root level)
+
+        // Perform BFS
+        while (!queue.isEmpty()) {
+            int size = queue.size(); // Number of nodes at the current level
+
+            // Process all nodes in the current level
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+
+                // If a leaf node is found, return the current level as the minimum depth
+                if (node.left == null && node.right == null) {
+                    return level;
+                }
+
+                // Add left child to queue if it exists
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+
+                // Add right child to queue if it exists
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
+            }
+
+            // Move to the next level
+            level++;
+        }
+
+        return 0; // This line is never reached due to tree structure constraints
+    }
+
+    /*
+     * 104. Maximum Depth of Binary Tree
+     * ==============================================
+     * DSA: Tree, BFS (Level Order Traversal), DFS (alternative)
+     * Time Complexity: O(n) – Each node is visited once.
+     * Space Complexity: O(n) – For the queue used in level-order traversal.
+     * Level: Easy
+     * ==============================================
+     * Intuition:
+     * Perform a level-order (BFS) traversal.
+     * Increment the level counter each time we complete a level.
+     * The total number of levels represents the maximum depth.
+     *
+     * You are given the root of a binary tree.
+     * Return its maximum depth – the number of nodes along the longest path
+     * from the root node down to the farthest leaf node.
+     *
+     * Example 1:
+     * Input: root = [3,9,20,null,null,15,7]
+     * Output: 3
+     * Explanation: The longest path is [3 → 20 → 15] or [3 → 20 → 7], depth = 3.
+     *
+     * Example 2:
+     * Input: root = [1,null,2]
+     * Output: 2
+     * Explanation: The longest path is [1 → 2], depth = 2.
+     */
+    public int maxDepth(TreeNode root) {
+        // If the tree is empty, depth is 0
+        if (root == null) {
+            return 0;
+        }
+
+        // Initialize queue for level-order traversal (BFS)
+        Queue<TreeNode> queue = new LinkedList<>(List.of(root));
+        int level = 0; // Track the depth level
+
+        // Traverse level by level
+        while (!queue.isEmpty()) {
+            int size = queue.size(); // Number of nodes in the current level
+
+            // Process all nodes at the current level
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+
+                // Add left and right children to the queue if they exist
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
+            }
+
+            // Increase depth after finishing a level
+            level++;
+        }
+
+        // Return the maximum depth
+        return level;
+    }
 
 }
