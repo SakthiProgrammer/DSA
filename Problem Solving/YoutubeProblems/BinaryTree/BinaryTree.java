@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Stack;
 
 public class BinaryTree {
 
@@ -257,22 +258,42 @@ public class BinaryTree {
         return maxValue;
     }
 
+    /**
+     * Finds the minimum value in a binary tree.
+     * ==============================================
+     * DSA: Tree, BFS (Level Order Traversal)
+     * Time Complexity: O(n) – Each node is visited once.
+     * Space Complexity: O(n) – For the queue used in level-order traversal.
+     * Level: Custom Utility (Not a LeetCode question)
+     * ==============================================
+     * Intuition:
+     * - Use level-order traversal (BFS) to visit every node.
+     * - Keep track of the minimum value encountered while traversing.
+     * - Return the smallest node value found in the tree.
+     */
     public int minValue(TreeNode root) {
+        // If the tree is empty, return 0 as a fallback
         if (root == null) {
             return 0;
         }
 
+        // Initialize the queue with the root node for BFS traversal
         Queue<TreeNode> queue = new LinkedList<>(List.of(root));
+
+        // Start with the maximum possible value to find the minimum
         int minValue = Integer.MAX_VALUE;
 
+        // Traverse the tree level by level
         while (!queue.isEmpty()) {
-            int size = queue.size();
+            int size = queue.size(); // Number of nodes at current level
 
             for (int i = 0; i < size; i++) {
-                TreeNode curr = queue.poll();
+                TreeNode curr = queue.poll(); // Remove the current node
 
+                // Update minimum value if current node is smaller
                 minValue = Math.min(minValue, curr.val);
 
+                // Add left and right children to the queue if they exist
                 if (curr.left != null) {
                     queue.offer(curr.left);
                 }
@@ -280,6 +301,48 @@ public class BinaryTree {
                 if (curr.right != null) {
                     queue.offer(curr.right);
                 }
+            }
+        }
+
+        // Return the smallest value found in the tree
+        return minValue;
+    }
+
+    /**
+     * Finds the minimum value in a binary tree using DFS (iterative with stack).
+     * ==================================================
+     * DSA: Tree, DFS (Depth-First Search using Stack)
+     * Time Complexity: O(n) – Each node is visited once.
+     * Space Complexity: O(n) – Stack stores up to n nodes in the worst case.
+     * Level: Easy
+     * ==================================================
+     * Intuition:
+     * - Use a stack for iterative DFS traversal.
+     * - At each step, compare node values and track the minimum.
+     *
+     */
+    public int minValueDFS(TreeNode root) {
+        if (root == null) {
+            return 0; // If the tree is empty, return 0 as a fallback
+        }
+
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        int minValue = Integer.MAX_VALUE;
+
+        while (!stack.isEmpty()) {
+            TreeNode node = stack.pop();
+
+            // Update the minimum value
+            minValue = Math.min(minValue, node.val);
+
+            // Push right child first so left is processed first (standard DFS)
+            if (node.right != null) {
+                stack.push(node.right);
+            }
+
+            if (node.left != null) {
+                stack.push(node.left);
             }
         }
 
