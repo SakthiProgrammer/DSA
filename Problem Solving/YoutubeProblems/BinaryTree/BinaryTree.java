@@ -1,6 +1,7 @@
 package BinaryTree;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -202,6 +203,87 @@ public class BinaryTree {
 
         // Return the maximum depth
         return level;
+    }
+
+    /**
+     * Maximum Value in a Binary Tree
+     * ==============================================
+     * DSA: Tree, BFS (Level Order Traversal)
+     * Time Complexity: O(n) – Each node is visited once.
+     * Space Complexity: O(n) – For the queue used in level-order traversal.
+     * Level: Custom (Not a LeetCode problem)
+     * ==============================================
+     * Intuition:
+     * Use level-order traversal (BFS) to visit each node.
+     * Keep track of the maximum value encountered.
+     * At the end of the traversal, return the maximum value.
+     *
+     * You are given the root of a binary tree.
+     * Return the maximum node value present in the tree.
+     *
+     * Example:
+     * Input: root = [5,1,9,null,null,4,13]
+     * Output: 13
+     * Explanation: The largest value among all nodes is 13.
+     */
+    public int maxValue(TreeNode root) {
+        // Initialize queue for level-order traversal
+        Queue<TreeNode> queue = new LinkedList<>(List.of(root));
+        int maxValue = Integer.MIN_VALUE; // Track the maximum value found
+
+        // Traverse level by level
+        while (!queue.isEmpty()) {
+            int size = queue.size(); // Number of nodes at the current level
+
+            // Process all nodes at the current level
+            for (int i = 0; i < size; i++) {
+                TreeNode curr = queue.poll();
+
+                // Update maxValue if the current node's value is larger
+                maxValue = Math.max(maxValue, curr.val);
+
+                // Add children to the queue for next level processing
+                if (curr.left != null) {
+                    queue.offer(curr.left);
+                }
+
+                if (curr.right != null) {
+                    queue.offer(curr.right);
+                }
+            }
+        }
+
+        // Return the maximum value found in the tree
+        return maxValue;
+    }
+
+    public int minValue(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        Queue<TreeNode> queue = new LinkedList<>(List.of(root));
+        int minValue = Integer.MAX_VALUE;
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+
+            for (int i = 0; i < size; i++) {
+                TreeNode curr = queue.poll();
+
+                minValue = Math.min(minValue, curr.val);
+
+                if (curr.left != null) {
+                    queue.offer(curr.left);
+                }
+
+                if (curr.right != null) {
+                    queue.offer(curr.right);
+                }
+            }
+        }
+
+        return minValue;
     }
 
 }
