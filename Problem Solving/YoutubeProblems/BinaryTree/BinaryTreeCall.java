@@ -87,9 +87,11 @@ public class BinaryTreeCall implements MethodCall {
         maxDepth = binaryTree.maxDepth(root5);
         System.out.println("Maximum Depth: " + maxDepth); // 2
 
-        /* ============================================== */
-        // 4. Max Value in Binary Tree (Custom Utility)
-        /* ============================================== */
+        /*
+         * ========================================= P: 37(Max Value) - 38(MinValue)
+         * // 4. Min\Max Value in Binary Tree (Custom Utility)
+         * /* ==============================================
+         */
 
         // Tree:
         // 5
