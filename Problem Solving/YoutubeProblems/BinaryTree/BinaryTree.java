@@ -2,9 +2,12 @@ package BinaryTree;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Set;
 import java.util.Stack;
 
 public class BinaryTree {
@@ -347,6 +350,325 @@ public class BinaryTree {
         }
 
         return minValue;
+    }
+
+    /**
+     * 102. Binary Tree Level Order Traversal
+     * ==============================================
+     * DSA: Tree, BFS (Breadth-First Search)
+     * Time Complexity: O(n) – Each node is visited once.
+     * Space Complexity: O(n) – For the queue and result list.
+     * Level: Medium
+     * ==============================================
+     * Problem:
+     * Given the root of a binary tree, return the level order traversal of its
+     * nodes' values.
+     * That is, return the values of the nodes level by level from left to right.
+     *
+     * Example 1:
+     * Input: root = [3,9,20,null,null,15,7]
+     * Output: [[3], [9,20], [15,7]]
+     *
+     * Example 2:
+     * Input: root = [1]
+     * Output: [[1]]
+     *
+     * Example 3:
+     * Input: root = []
+     * Output: []
+     *
+     * Intuition:
+     * - Use a queue to perform level-order traversal (BFS).
+     * - For each level, iterate over all nodes at that level,
+     * collect their values, and add their children to the queue.
+     * - Append each level’s result to the final output list.
+     */
+    public List<List<Integer>> levelOrder(TreeNode root) {
+
+        if (root == null) {
+            return new ArrayList<>();
+        }
+
+        List<List<Integer>> res = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>(List.of(root));
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            List<Integer> level = new ArrayList<>();
+            for (int i = 0; i < size; i++) {
+                TreeNode curr = queue.poll();
+                level.add(curr.val);
+
+                if (curr.left != null) {
+                    queue.offer(curr.left);
+                }
+
+                if (curr.right != null) {
+                    queue.offer(curr.right);
+                }
+            }
+
+            res.add(level);
+        }
+
+        return res;
+    }
+
+    /**
+     * 112. Path Sum
+     * ==============================================
+     * Level: Easy
+     * Tags: Tree, DFS
+     * ==============================================
+     * Problem:
+     * Given the root of a binary tree and an integer targetSum, return true
+     * if the tree has a root-to-leaf path such that adding up all the values
+     * along the path equals targetSum.
+     *
+     * A leaf is a node with no children.
+     *
+     * Example 1:
+     * Input: root = [5,4,8,11,null,13,4,7,2,null,null,null,1], targetSum = 22
+     * Output: true
+     * Explanation: The root-to-leaf path 5 → 4 → 11 → 2 has a sum of 22.
+     *
+     * Example 2:
+     * Input: root = [1,2,3], targetSum = 5
+     * Output: false
+     * Explanation: Paths 1→2 (sum 3) and 1→3 (sum 4) do not match targetSum.
+     *
+     * Example 3:
+     * Input: root = [], targetSum = 0
+     * Output: false
+     * Explanation: Tree is empty, so no paths exist.
+     *
+     * Approach:
+     * - Use DFS to explore each path from root to leaf.
+     * - Accumulate the sum as we go deeper.
+     * - If a leaf node is reached, check if the accumulated sum equals targetSum.
+     */
+    public boolean hasPathSum(TreeNode root, int targetSum) {
+        return pathSum(root, targetSum, 0);
+    }
+
+    /**
+     * Helper method to recursively compute path sum.
+     * 
+     * @param root      Current node
+     * @param targetSum Target sum to reach
+     * @param currSum   Current accumulated sum
+     * @return True if a valid path exists
+     */
+    private boolean pathSum(TreeNode root, int targetSum, int currSum) {
+        if (root == null) {
+            return false;
+        }
+
+        currSum += root.val;
+
+        // Check if it’s a leaf node
+        if (root.left == null && root.right == null) {
+            return currSum == targetSum;
+        }
+
+        // Recurse down to children
+        return pathSum(root.left, targetSum, currSum) || pathSum(root.right, targetSum, currSum);
+    }
+
+    /**
+     * 100. Same Tree
+     * Difficulty: Easy
+     * 
+     * Given the roots of two binary trees `p` and `q`, this method checks
+     * if they are the same tree.
+     *
+     * Two binary trees are considered the same if:
+     * - They have the same structure.
+     * - The corresponding nodes have the same values.
+     *
+     * @param p the root node of the first binary tree
+     * @param q the root node of the second binary tree
+     * @return true if both trees are identical, false otherwise
+     *
+     *         Examples:
+     *
+     *         Example 1:
+     *         Input: p = [1,2,3], q = [1,2,3]
+     *         Output: true
+     *
+     *         Example 2:
+     *         Input: p = [1,2], q = [1,null,2]
+     *         Output: false
+     *
+     *         Example 3:
+     *         Input: p = [1,2,1], q = [1,1,2]
+     *         Output: false
+     */
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+
+        if (p == null || q == null) {
+            return p == q;
+        }
+
+        return p.val == q.val && isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+    }
+
+    private int maxDiameter = 0;
+
+    public int diameterOfBinaryTree(TreeNode root) {
+        depth(root);
+        return maxDiameter;
+    }
+
+    private int depth(TreeNode node) {
+        if (node == null)
+            return 0;
+
+        int leftDepth = depth(node.left); // recursively find depth of left subtree
+        int rightDepth = depth(node.right); // recursively find depth of right subtree
+
+        maxDiameter = Math.max(maxDiameter, leftDepth + rightDepth); // update diameter
+
+        return 1 + Math.max(leftDepth, rightDepth); // return depth of current node
+    }
+
+    /*
+     * 226. Invert Binary Tree
+     * Difficulty: Easy
+     * 
+     * Given the root of a binary tree, invert the tree (mirror it),
+     * and return its root.
+     * 
+     * Example 1:
+     * Input: root = [4,2,7,1,3,6,9]
+     * Output: [4,7,2,9,6,3,1]
+     * Explanation:
+     * 4 4
+     * / \ => / \
+     * 2 7 7 2
+     * / \ / \ / \ / \
+     * 1 3 6 9 9 6 3 1
+     * 
+     * Example 2:
+     * Input: root = [2,1,3]
+     * Output: [2,3,1]
+     * Explanation:
+     * 2 => 2
+     * / \ / \
+     * 1 3 3 1
+     * 
+     * Example 3:
+     * Input: root = []
+     * Output: []
+     * 
+     * Approach:
+     * - Use an iterative DFS with a stack to traverse the tree.
+     * - At each node, swap its left and right children.
+     * - Push the children into the stack to continue traversal.
+     */
+    public TreeNode invertTree(TreeNode root) {
+        if (root == null)
+            return null;
+
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+
+        while (!stack.isEmpty()) {
+            TreeNode curr = stack.pop();
+
+            if (curr != null) {
+                TreeNode temp = curr.left;
+                curr.left = curr.right;
+                curr.right = temp;
+
+                stack.push(curr.right);
+                stack.push(curr.left);
+            }
+        }
+
+        return root;
+    }
+
+    /**
+     * 236. Lowest Common Ancestor of a Binary Tree
+     * ==============================================
+     * Level: Medium
+     * Tags: Tree, DFS, Binary Tree
+     * ==============================================
+     * Problem:
+     * Given a binary tree, find the lowest common ancestor (LCA) of two given nodes
+     * in the tree.
+     *
+     * According to the definition of LCA on Wikipedia:
+     * “The lowest common ancestor is defined between two nodes p and q as the
+     * lowest node in T
+     * that has both p and q as descendants (where we allow a node to be a
+     * descendant of itself)
+     *
+     * Example 1:
+     * Input: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1
+     * Output: 3
+     * Explanation: The LCA of nodes 5 and 1 is 3.
+     *
+     * Example 2:
+     * Input: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4
+     * Output: 5
+     * Explanation: The LCA of nodes 5 and 4 is 5 (a node is allowed to be a
+     * descendant of itself).
+     *
+     * Example 3:
+     * Input: root = [1,2], p = 1, q = 2
+     * Output: 1
+     *
+     * Approach:
+     * - Use BFS to map each node to its parent using a HashMap.
+     * - Traverse from node p to root, storing all ancestors in a HashSet.
+     * - Traverse from node q upward until a node appears in the HashSet — that's
+     * the LCA.
+     */
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        // Map to store each node's parent
+        HashMap<TreeNode, TreeNode> map = new HashMap<>();
+        // Queue for BFS traversal
+        Queue<TreeNode> queue = new LinkedList<>();
+
+        // Start BFS from the root
+        queue.add(root);
+        map.put(root, null); // root has no parent
+
+        // Traverse until both nodes p and q are found and their parents are recorded
+        while (!map.containsKey(p) || !map.containsKey(q)) {
+            TreeNode curr = queue.poll();
+
+            // If left child exists, add to queue and map its parent
+            if (curr.left != null) {
+                map.put(curr.left, curr);
+                queue.add(curr.left);
+            }
+
+            // If right child exists, add to queue and map its parent
+            if (curr.right != null) {
+                map.put(curr.right, curr);
+                queue.add(curr.right);
+            }
+        }
+
+        // Set to store ancestors of p
+        Set<TreeNode> ancestors = new HashSet<>();
+
+        // Add all ancestors of p to the set
+        while (p != null) {
+            ancestors.add(p);
+            p = map.get(p); // move to parent
+        }
+
+        // Traverse ancestors of q until we find a common one in p's ancestor set
+        while (!ancestors.contains(q)) {
+            q = map.get(q); // move to parent
+        }
+
+        // The first common ancestor found is the LCA
+        return q;
     }
 
 }
