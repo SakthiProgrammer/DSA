@@ -1,5 +1,6 @@
 import ArraysPrblm.ArraysCall;
 import BackTracking.BackTrackingCall;
+import BinarySearchTree.BinarySearchTreeCall;
 import BinaryTree.BinaryTreeCall;
 import BitManipulation.BitManipulationCall;
 import DynamicProgramming.DynamicProgrammingCall;
@@ -106,10 +107,18 @@ public class Main {
 
         /*
          * ==============================================
-         * 9. Binary Tree Problems (P): (36 - ) = 3
+         * 9. Binary Tree Problems (P): (36 - 46) = 11
          * ==============================================
          */
         method = new BinaryTreeCall();
+        method.call();
+
+        /*
+         * ==============================================
+         * 10. Binary Search Tree Problems (P): (47 - ) = 3
+         * ==============================================
+         */
+        method = new BinarySearchTreeCall();
         method.call();
 
     }
